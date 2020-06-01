@@ -1,0 +1,18 @@
+<div>
+    2 곱하기 2는 <strong><%= 2 * 2%></strong>
+    2 곱하기 4는 <strong><%= 2 * 4%></strong>
+</div>
+
+<% if 1+1 == 2 %>
+    <span>Correct!</span>
+<% else %>
+    <span>Wrong!</span>
+<% end %>
+
+<h1>반복문</h1>
+<% ["도","레","미","파"].each do |scale| %>
+    <span><%= scale %></span>
+<% end %>
+
+<h1>현 재 시 간</h1>
+<span><%= DateTime.now %></span>
