@@ -14,15 +14,29 @@
         <div class="logo">My Profile</div>
         <ul class="menu">
           <a href="/">
-            <li class="item">Hello World</li>
+            <li class="item">Home</li>
           </a>
-          <a href="/contacts/new">
+          <!--link_to 헬퍼를 이용 해보자-->
+          <!--<a href="/contacts/new">-->
+          <%= link_to new_contact_path do %>
             <li class="item">Contact</li>
-          </a>
+          <!--</a>-->
+          <% end %>
+          <% if user_signed_in? %>
+            <li class="item"><%= current_user.name %></li>
+            <!-- rake routes하면 session DELETE /sessions/:id(.:format) sessions#destroy -->
+            <li class="item"><%= link_to 'Sign out', session_path(current_user), method: 'delete' %></li>
+            <% if current_user.admin %>
+              <li class="item"><%= link_to 'Contacts list', contacts_path %></li>
+            <% end %>
+          <% else %>
+            <li class="item"><%= link_to 'Sign in', new_session_path %></li>
+            <li class="item"><%= link_to 'Sign up', new_user_path %></li>
+          <% end %>
         </ul>
       </div>
     </div>
-    
+    <%= flash[:alert] %>
     <%= yield %>
   </body>
 </html>
